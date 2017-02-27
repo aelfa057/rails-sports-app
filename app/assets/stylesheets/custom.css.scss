@@ -15,6 +15,7 @@ $navbar-default-bg: black;
 .jumbotron{
   background-size: cover;
   height: 450px;
+  padding-right: 40px;
 }
 
 
@@ -27,3 +28,14 @@ $navbar-default-bg: black;
 .jumbotron p{
     text-align: left;
 }
+
+.navbar{
+    margin-bottom: 0px;
+}
+
+.listing {
+    list-style: none;
+    padding-left: 0;
+}
+
+

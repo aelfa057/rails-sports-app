@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root 'welcome#home'
   
   get 'signup', to: 'users#new'
-  resources :users
+  resources :users, except: [:new]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
