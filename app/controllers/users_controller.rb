@@ -2,6 +2,7 @@ class UsersController < ApplicationController
    
    before_action :set_user, only: [:edit, :update, :show]
    before_action :require_same_user, only: [:edit, :update]
+   before_action :require_admin, only: [:destroy]
    
    def new
      @user = User.new
@@ -10,8 +11,9 @@ class UsersController < ApplicationController
    def create
       @user = User.new(user_params)
       if @user.save
+         session[:user_id] = @user.id
          #flash[:success] = "Welcome to the SConnect #{@user.username}"
-         redirect_to root_path
+         redirect_to user_path(@user)
       else
          render 'new'
       end
@@ -22,7 +24,7 @@ class UsersController < ApplicationController
    end
    
    def index
-       @users = User.all
+       @users = User.paginate(page: params[:page], per_page: 5)
    end
    
    def edit
@@ -40,7 +42,10 @@ class UsersController < ApplicationController
    end
    
    def destroy
-       
+       @user = User.find(params[:id])
+       @user.destroy
+       flash[:danger] = "User and all data have been deleted"
+       redirect_to users_path
    end
    
    private
@@ -56,6 +61,13 @@ class UsersController < ApplicationController
       if current_user != @user
       #flash[:danger] = "You can only edit your own account"
       redirect_to root_path
+      end
+   end
+   
+   def require_admin
+      if logged_in? and !current_user.admin?
+         flash[:danger] = "Only admin users can perform that action"
+         redirect_to user_path
       end
    end
 end
