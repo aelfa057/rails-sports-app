@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20170309181437) do
 
-  create_table "match_tables", force: :cascade do |t|
+  create_table "matches", force: :cascade do |t|
     t.integer "sport_id"
     t.string  "created_by"
     t.date    "match_date"
