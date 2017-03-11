@@ -1,5 +1,7 @@
 #User validation class
 class User < ActiveRecord::Base
+    has_many :matches
+    
     before_save { self.email = email.downcase }
     has_secure_password
     
