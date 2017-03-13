@@ -11,15 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170309181437) do
+ActiveRecord::Schema.define(version: 20170312033501) do
 
   create_table "matches", force: :cascade do |t|
     t.integer "sport_id"
-    t.string  "created_by"
     t.date    "match_date"
     t.time    "match_time"
     t.string  "location"
+    t.integer "user_id"
   end
+
+  create_table "team_members", force: :cascade do |t|
+    t.integer  "team"
+    t.integer  "user"
+    t.boolean  "captain"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "team_members", ["team"], name: "index_team_members_on_team"
+  add_index "team_members", ["user"], name: "index_team_members_on_user"
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "teams", ["user_id"], name: "index_teams_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
