@@ -1,3 +1,4 @@
+
 <div class = "row jumbotron">
     <div class="col col-md-5 col-md-offset-1">
         <h1>Sport Connect</h1>
@@ -5,10 +6,13 @@
         A bunch of random text. A bunch of random text. A bunch of random text. A bunch of random text. A bunch of random text. 
         A bunch of random text. A bunch of random text. A bunch of random text. A bunch of random text. A bunch of random text. </p> 
     </div>
-    <div class = "col col-md-5 col-md-offset-1 col-xs-1">
+    
+    <div class = "col col-md-5 col-md-offset-1 col-xs-1 top-margin">
       <%#= render :partial => '/users/form' %>
       <%#= form_for(obj: @user, :html => {class: "form-horizontal", role: "form"}) do |f| %>
-       <h1 align="left">Log in</h1>
+      
+       <% if !logged_in? %>
+
             <%= form_for(:session, :html => {class: "form-horizontal", role: "form"}, url: login_path) do |f| %>
             <div class="form-group">
                 <div class="control-label col-sm-2">
@@ -32,5 +36,7 @@
                 </div>
             </div>
             <% end %>
+        <% end %>
+        
         </div>
 </div>

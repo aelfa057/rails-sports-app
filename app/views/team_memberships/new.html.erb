@@ -1,0 +1,26 @@
+<%# app/views/team_memberships/new.html.erb %>
+<h1>
+  Create Team Membership
+</h1>
+
+    <%= form_for(@team_membership) do |f| %>
+    
+          <%= f.label(:user) %>
+          <%= f.collection_select(
+                                    :user_id,
+                                    User.all,
+                                    :id,
+                                    :username
+          ) %>
+        
+          <%= f.label(:team) %>
+          <%= f.collection_select(
+                                    :team_id,
+                                    Team.all,
+                                    :id,
+                                    :name
+          ) %>
+        
+          <%= f.submit %>
+          
+    <% end %>

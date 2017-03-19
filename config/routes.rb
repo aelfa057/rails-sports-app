@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   
   root 'welcome#home'
   
+  # Signup page handles creating a new user 
   get 'signup', to: 'users#new'
   resources :users, except: [:new]
   
@@ -15,6 +16,8 @@ Rails.application.routes.draw do
   delete 'logout', to:'sessions#destroy'
   
   resources :matches
+  resources :teams 
+  resources :team_memberships
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

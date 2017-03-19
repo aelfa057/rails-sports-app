@@ -1,6 +1,12 @@
 #User validation class
 class User < ActiveRecord::Base
+    has_many :team_memberships, :dependent => :destroy
+    has_many :teams, :through => :team_memberships
     has_many :matches
+    
+    #validates_associated :team_memberships
+    
+    accepts_nested_attributes_for :team_memberships, :teams
     
     before_save { self.email = email.downcase }
     has_secure_password

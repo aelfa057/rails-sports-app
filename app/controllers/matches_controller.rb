@@ -31,6 +31,8 @@ class MatchesController < ApplicationController
 
     private
     
+    # It is better to use a sport string instead of making this an association...  we would need to make a sport model
+    # Number of sports shouldnt really grow... 
     def match_params
        params.require(:match).permit(:sport_id, :created_by, :match_date, :match_time, :location) 
     end
