@@ -15,10 +15,10 @@ ActiveRecord::Schema.define(version: 20170318160834) do
 
   create_table "matches", force: :cascade do |t|
     t.integer "sport_id"
-    t.string  "created_by"
     t.date    "match_date"
     t.time    "match_time"
     t.string  "location"
+    t.integer "user_id"
   end
 
   create_table "team_memberships", force: :cascade do |t|
