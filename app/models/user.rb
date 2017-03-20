@@ -1,7 +1,7 @@
 #User validation class
 class User < ActiveRecord::Base
     has_many :team_memberships, :dependent => :destroy
-    has_many :teams, :through => :team_memberships
+    has_many :teams, -> { uniq }, through: :team_memberships
     has_many :matches
     
     #validates_associated :team_memberships

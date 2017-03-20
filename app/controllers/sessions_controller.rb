@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
             redirect_to user_path(user)
         else
             flash.now[:danger]= "There was something wrong with you login info"
-            render '/root.html.erb'
+            render 'new'
         end
         
    end

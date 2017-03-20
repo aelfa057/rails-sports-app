@@ -36,11 +36,18 @@ $navbar-default-bg: black;
     margin-bottom: 0px;
     background-color: #1DA7A8;
     border: none;
+    position: sticky;
+    top: 0px;
+    z-index: 100;
 }
 
 .nav.navbar-nav li a {
     color: #fff;
     
+}
+
+.dropdown-menu  {
+    background-color: #1DA7A8;
 }
 
 .listing {
@@ -57,7 +64,6 @@ $navbar-default-bg: black;
 
  body {
     overflow-x: hidden;
-    background-color: grey;
  }
  
 .center {

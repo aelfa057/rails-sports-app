@@ -1,6 +1,6 @@
 class Match < ActiveRecord::Base
-    belongs_to :user
-    has_many :team
     
-    validates :user_id, presence: true
+    belongs_to :home_team, :class_name => :team
+    belongs_to :away_team, :class_name => :team
+    
 end

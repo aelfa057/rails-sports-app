@@ -3,4 +3,5 @@ class TeamMembership < ActiveRecord::Base
     # Consists of 2 foreign key columns: team_id, user_id
     belongs_to :team
     belongs_to :user
+    
 end
