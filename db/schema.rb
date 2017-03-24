@@ -11,20 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170319163352) do
+ActiveRecord::Schema.define(version: 20170321232554) do
 
   create_table "matches", force: :cascade do |t|
-    t.integer "sport_id"
     t.date    "match_date"
     t.time    "match_time"
     t.string  "location"
     t.integer "user_id"
     t.integer "home_team_id"
     t.integer "away_team_id"
+    t.integer "sport_id"
+    t.boolean "completed"
   end
 
   add_index "matches", ["away_team_id"], name: "index_matches_on_away_team_id"
   add_index "matches", ["home_team_id"], name: "index_matches_on_home_team_id"
+  add_index "matches", ["sport_id"], name: "index_matches_on_sport_id"
+
+  create_table "sports", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "team_memberships", force: :cascade do |t|
     t.integer "user_id"
@@ -40,8 +48,12 @@ ActiveRecord::Schema.define(version: 20170319163352) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "sport_id"
+    t.integer  "wins"
+    t.integer  "losses"
   end
 
+  add_index "teams", ["sport_id"], name: "index_teams_on_sport_id"
   add_index "teams", ["user_id"], name: "index_teams_on_user_id"
 
   create_table "users", force: :cascade do |t|

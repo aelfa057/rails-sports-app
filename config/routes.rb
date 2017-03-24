@@ -11,9 +11,9 @@ Rails.application.routes.draw do
   
   
   get 'matches', to: 'matches#index'
-  resources :teams do 
-    resources :matches, except: :index
-  end
+  resources :teams
+  resources :matches, except: :index
+  
   
   resources :team_memberships
 

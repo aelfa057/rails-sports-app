@@ -2,26 +2,30 @@ class MatchesController < ApplicationController
     
     before_action :require_same_user, only: [:edit, :update, :destroy]
     before_action :require_user
-    before_action :set_team
+    #before_action :set_team
     
     def new
 
         @match = Match.new
-        @match.home_team_id = @team.id
         
     end
     
     def create
         
         @match = Match.new(match_params)
-        @match.home_team_id = Team.find(params[:team_id])
-
+        @team = Team.find(@match.home_team_id)
+        @sport = Sport.find(@team.sport_id)
+        @match.sport = @sport
         
         if @match.save
-            redirect_to match_path
+            current_user.matches << @match
+            flash[:success] = "You have successfully created a team! Invite some friends :)"
+            redirect_to match_path(@match)
         else
-            render :new
+            flash[:danger] = "There was an issue creating the team, please try again."
+            render 'new'
         end
+        
     end
     
     def update
@@ -41,7 +45,7 @@ class MatchesController < ApplicationController
     
 
     def match_params
-       params.require(:match).permit(:sport_id, :created_by, :match_date, :match_time, :location, :home_team_id, :away_team_id) 
+       params.require(:match).permit(:match_date, :match_time, :location, :home_team_id) 
     end
     
     def require_same_user

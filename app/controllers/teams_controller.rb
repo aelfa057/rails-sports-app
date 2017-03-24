@@ -11,10 +11,8 @@ class TeamsController < ApplicationController
         @team = Team.new(team_params)
         @team.user_id = current_user
         @team.captain = current_user
-
         # This sets the creater of the team -- a column in the teams table
         if @team.save
-  
             flash[:success] = "Team was successfully created" 
             redirect_to root_path
         else
@@ -43,7 +41,8 @@ class TeamsController < ApplicationController
     end
     
     def show 
-        
+        @team_members = @team.users
+        #TODO We need to find a way to access all of a teams matches from the teams show action .. 
     end
     
     
@@ -56,7 +55,7 @@ class TeamsController < ApplicationController
     
     def users_from_params
         #This members_params[:members_attributes].values should be an array of `id`s
-        User.find(team_members_params[:team_membership_attributes].values)
+        User.find(team_memberships_params[:team_membership_attributes].values)
     end
     
     
@@ -64,6 +63,5 @@ class TeamsController < ApplicationController
     def set_team
       @team = Team.find(params[:id])
     end
-    
     
 end

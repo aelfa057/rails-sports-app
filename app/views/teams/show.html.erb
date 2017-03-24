@@ -1,0 +1,69 @@
+<div class='row'>
+  
+  <div class='col-md-offset-5'>
+    <h1 class='team-name' style="color: #000 !important;"><%= @team.name %></h1>
+  </div>
+
+<div class='row'>
+  
+  <div class='col top-margin'>
+    <div class="ui four statistics">
+      
+      <div class="statistic">
+        <div class="value">
+          <%= @team.wins %>
+        </div>
+        
+        <div class="label">
+          Wins
+        </div>
+      </div>
+      
+      <div class="statistic">
+        <div class="value">
+          <%= @team.losses %>
+        </div>
+        <div class="label">
+          Losses
+        </div>
+      </div>
+      
+      <div class="statistic">
+        <div class="value">
+          <i class="star icon"></i> 5
+        </div>
+        <div class="label">
+          Street Rep
+        </div>
+      </div>
+      
+      <div class="statistic">
+        <div class="value">
+          <%= image_tag 'group.png' %>
+          <%= @team.team_memberships.count %>
+        </div>
+        <div class="label">
+          Team Members
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+</div>
+<div class="container top-margin">
+<div class="ui middle aligned divided list">
+  <% @team_members.each do |member| %>
+    <div class="item">
+      <div class="right floated content">
+        <div class="ui button">Add</div>
+      </div>
+      <%= image_tag 'users.png', :class => "ui avatar image" %>
+      <div class="content">
+        <%= member.username %>
+      </div>
+    </div>
+  <% end %>
+</div>
+</div>

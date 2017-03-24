@@ -6,26 +6,57 @@
     </div>
 </div>
 
-<h4 align = "center"><%#= @user.username %>[Username]</h4>
+<h4 align = "center"><%= @user.username %></h4>
 
 <div class='row' align='center' style="margin-left: 3vh;">
+  
   <% @user_teams.each do |team| %>
     <div class="col-md-2 top-margin">
-      <a href="/matches/new" class="thumbnail">
-        
-        <% if team.id == 1 %>
-          <%= image_tag "basketball.png" %>
-        <% elsif team.id == 2 %>
-          <%= image_tag "football.png" %>
+      <%= link_to team_path(team) do %>
+      <div class="thumbnail">
+
+        <% if team.sport_id == 1 %>
+          <%= image_tag "basketball-court-big.png" %>
+        <% elsif team.sport_id == 2 %>
+          <%= image_tag "soccer-big.png" %>
         <% else %>
-          <%= image_tag "soccer.png" %>
+          <%= image_tag "hockey.png" %>
         <% end %>
         
-        <h2 align="center"><%= team.name %> </h2>
-      </a>
+        <h2 align="center" class="team-name"><%= team.name %></h2>
+        <h3 align="center" class="team-record"><%= team.wins %>W - <%= team.losses %>L</h2>
+        
+      </div>
+      <%end%>
+    </div>
+  <% end %>  
+  
+  
+</div>
+
+<div class='row top-margin' style="margin-left: 3vh;">
+  <% @user_matches.each do |match| %>
+    <div class="col-md-4 top-margin">
+      <%= link_to match_path(match) do %>
+        <div class='thumbnail'>
+          
+          <% if match.sport.name == "basketball" %>
+            <%= image_tag "basketball-court-big.png" %>
+          <% elsif match.sport.name == "football" %>
+            <%= image_tag "football-big.png" %>
+          <% elsif match.sport.name == "hockey" %>
+            <%= image_tag "hockey.png" %>
+          <% else %>
+            <%= image_tag "soccer-big.png" %>
+          <% end %>
+          
+          <h4 align="center" class="match-location"><%= match.location %> </h4>
+          
+          <p align="center" class="match-sport"><%= match.sport.name %> </p>
+  
+        </div>
+      <% end %>
     </div>
   <% end %>  
 </div>
-<div align = "center">
-  <%= will_paginate @user_teams %>
-</div
+
