@@ -21,7 +21,7 @@ class UsersController < ApplicationController
    
    
    def show
-      @user_teams = @user.teams.paginate(page: params[:page], per_page: 6)
+      @user_teams = @user.teams.paginate(page: params[:page], per_page: 3)
       @user_matches = @user.matches.paginate(page: params[:page], per_page: 6) 
    end
    

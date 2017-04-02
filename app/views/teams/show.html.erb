@@ -1,69 +1,122 @@
 <div class='row'>
   
-  <div class='col-md-offset-5'>
-    <h1 class='team-name' style="color: #000 !important;"><%= @team.name %></h1>
-  </div>
 
-<div class='row'>
-  
-  <div class='col top-margin'>
-    <div class="ui four statistics">
-      
-      <div class="statistic">
-        <div class="value">
-          <%= @team.wins %>
+
+
+  <div class='row'>
+    <div class='col-md-4'>
+      <%= image_tag 'team_logo.png' %>
+    </div>
+    <div class='col-md-offset-5'>
+      <div class='col top-margin'>
+        <div class="ui statistics">
+          
+          <div class="statistic">
+            <div class="value">
+              <%= @team.wins if @team.wins %>
+              <% if @team.wins = 0 %>
+              11
+              <% end %>
+            </div>
+            
+            <div class="label">
+              Wins
+            </div>
+          </div>
+          
+          <div class="statistic">
+            <div class="value">
+              <%= @team.losses if @team.losses %>
+              <% if @team.losses = 0 %>
+              4
+              <% end %>
+            </div>
+            <div class="label">
+              Losses
+            </div>
+          </div>
+          
+          <div class="statistic">
+            <div class="value">
+              <i class="star icon"></i> 5
+            </div>
+            <div class="label">
+              Street Rep
+            </div>
+          </div>
+          
+          <div class="statistic">
+            <div class="value">
+              <%= image_tag 'group.png' %>
+              <%= @team.team_memberships.all.count %>
+            </div>
+            <div class="label">
+              Team Members
+            </div>
+          </div>
+          
+        </div>
+        <div class='col top-margin'>
+          <div class='two ui buttons top-margin'>
+            <%= link_to new_team_match_path(@team.id) do %>
+              <button class='ui button' style="background-color:#A71E39; color: #fff;">Invite Player</button>
+            <% end %>
+            <%= link_to new_team_match_path(@team.id) do %>
+              <button class='ui teal button'>Create a Match</button>
+            <% end %>
+          </div>
         </div>
         
-        <div class="label">
-          Wins
-        </div>
-      </div>
-      
-      <div class="statistic">
-        <div class="value">
-          <%= @team.losses %>
-        </div>
-        <div class="label">
-          Losses
-        </div>
-      </div>
-      
-      <div class="statistic">
-        <div class="value">
-          <i class="star icon"></i> 5
-        </div>
-        <div class="label">
-          Street Rep
-        </div>
-      </div>
-      
-      <div class="statistic">
-        <div class="value">
-          <%= image_tag 'group.png' %>
-          <%= @team.team_memberships.count %>
-        </div>
-        <div class="label">
-          Team Members
-        </div>
-      </div>
-      
     </div>
   </div>
   
 </div>
-</div>
-<div class="container top-margin">
-<div class="ui middle aligned divided list">
-  <% @team_members.each do |member| %>
-    <div class="item">
-      <div class="right floated content">
-        <div class="ui button">Add</div>
-      </div>
-      <%= image_tag 'users.png', :class => "ui avatar image" %>
-      <div class="content">
-        <%= member.username %>
+
+<div class="container">
+  <div class='row top-margin'>
+    <div class = 'col col-md-10 col-md-offset-1'>
+      <div class="ui divided list">
+        <% @team_members.each do |member| %>
+          <div class="item">
+            <div class="right floated content">
+              <%= link_to user_path(member.user_id) do %>
+              <div class="ui button">View Profile</div>
+              <% end %>
+            </div>
+            <%= image_tag 'users.png', :class => "ui avatar image" %>
+            <div class="content">
+              <%= User.find(member.user_id).username %>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
-  <% end %>
+  </div>
 </div>
+
+<h4 class="ui horizontal divider header">
+  <i class="tag icon"></i>
+  Upcoming Matches
+</h4>
+
+
+</div>
+
+
+
+<div class='row top-margin'>
+  <div class='col-md-offset-3'>
+    <% @matches.each do |match| %>
+      <div class='col-md-3'>
+        <div class='match-card'>
+          <p style="text-decoration: bold;"><%= match.match_date %></p>
+          <hr style="bottom-margin: 0 !important;">    
+          
+            <h4 align='center'><%= match.home_team.name %></h4>
+            <p align='center'>Vs.</p>
+            <h4 align='center'>Away Team Name</h4>
+        </div>
+      </div>
+   <% end %>
+  </div>
 </div>

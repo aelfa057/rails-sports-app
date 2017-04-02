@@ -1,0 +1,34 @@
+<div class='row' align='center' style="margin-left: 3vh;">
+  <div class='top-margin'>
+  <h4 class="ui horizontal divider header">
+  <i class="tag icon"></i>
+  My Teams
+  </h4>
+  </div>
+  <div class="top-margin">
+  <% @user_teams.each do |team| %>
+    <div class="col-md-4">
+      <%= link_to team_path(team) do %>
+      <div class="thumbnail">
+
+        <% if team.sport_id == 1 %>
+          <%= image_tag "basketball-court-big.png" %>
+        <% elsif team.sport_id == 2 %>
+          <%= image_tag "soccer-big.png" %>
+        <% else %>
+          <%= image_tag "hockey.png" %>
+        <% end %>
+        
+        <h2 align="center" class="team-name"><%= team.name %></h2>
+        <h3 align="center" class="team-record"><%= team.wins %>W - <%= team.losses %>L</h2>
+        
+      </div>
+      <%end%>
+    </div>
+  <% end %>
+  </div>
+  
+
+  
+  
+</div>

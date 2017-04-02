@@ -2,7 +2,7 @@ class MatchesController < ApplicationController
     
     before_action :require_same_user, only: [:edit, :update, :destroy]
     before_action :require_user
-    #before_action :set_team
+    before_action :set_team
     
     def new
 
@@ -20,7 +20,7 @@ class MatchesController < ApplicationController
         if @match.save
             current_user.matches << @match
             flash[:success] = "You have successfully created a team! Invite some friends :)"
-            redirect_to match_path(@match)
+            redirect_to team_path(@team)
         else
             flash[:danger] = "There was an issue creating the team, please try again."
             render 'new'
@@ -40,12 +40,15 @@ class MatchesController < ApplicationController
         
     end
 
+    def show
+        
+    end
     
     private
     
 
     def match_params
-       params.require(:match).permit(:match_date, :match_time, :location, :home_team_id) 
+       params.require(:match).permit(:match_date, :match_time, :location, :home_team_id, :away_team_id) 
     end
     
     def require_same_user

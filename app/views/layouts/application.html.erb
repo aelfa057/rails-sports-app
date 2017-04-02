@@ -36,14 +36,16 @@
                 <li>
                     <a href="#">Performance History</a>
                 </li>
+                <% if logged_in? %>
                 <li>
-                    <a href="#">About</a>
+                    <%= link_to 'My Teams', user_teams_path(current_user.teams) %>
                 </li>
+                <% end %>
                 <li>
                     <a href="#">Find Match</a>
                 </li>
                 <li>
-                    <a href="#">Create Match</a>
+                    <a>Create Match</a>
                 </li>
             </ul>
         </div>
@@ -56,6 +58,7 @@
             });
         </script>
         -->
+  
         
 <%= yield %>
 

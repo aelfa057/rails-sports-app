@@ -2,6 +2,8 @@ class TeamsController < ApplicationController
     
     before_action :set_team, only: [:edit, :update, :show, :destroy]
     
+    
+    
     def new
         @team = Team.new
     end
@@ -9,7 +11,6 @@ class TeamsController < ApplicationController
     def create
 
         @team = Team.new(team_params)
-        @team.user_id = current_user
         @team.captain = current_user
         # This sets the creater of the team -- a column in the teams table
         if @team.save
@@ -37,12 +38,12 @@ class TeamsController < ApplicationController
     end
     
     def index
-    
+        @user_teams = current_user.teams.paginate(page: params[:page], per_page: 6)
     end
     
     def show 
-        @team_members = @team.users
-        #TODO We need to find a way to access all of a teams matches from the teams show action .. 
+        @team_members = @team.team_memberships
+        @matches = Match.where(:home_team_id == @team.id || :away_team_id == @team.id)
     end
     
     
@@ -50,7 +51,7 @@ class TeamsController < ApplicationController
     
     # These are the fields we want to white-list with every call to update/create action
     def team_params
-         params.require(:team).permit(:name, user_ids: [])
+         params.require(:team).permit(:name, :sport_id, user_ids: [])
     end
     
     def users_from_params

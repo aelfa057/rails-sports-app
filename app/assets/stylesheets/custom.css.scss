@@ -45,6 +45,15 @@ h2, h3{
     text-align: left;
 }
 
+.match-card {
+    overflow: hidden;
+    -moz-box-shadow: 0 0 3px #ccc;
+    -webkit-box-shadow: 0 0 3px #ccc;
+    box-shadow: 0 0 3px #ccc;
+    min-height: 12vh;
+    background-color: #1DA7A8;
+}
+
 .match-sport{
     text-transform: uppercase;
     color: #fff !important;
@@ -54,6 +63,14 @@ h2, h3{
     color: #fff !important;
 }
 
+.player-card-wrapper{
+    min-height: 20vh;
+    overflow: hidden;
+    -moz-box-shadow: 0 0 3px #ccc;
+    -webkit-box-shadow: 0 0 3px #ccc;
+    box-shadow: 0 0 3px #ccc;
+}
+
 .team-name{
     color: #fff !important;
 }
@@ -61,6 +78,8 @@ h2, h3{
 .team-record {
     color: #fff !important;
 }
+
+
 
 .navbar{
     margin-bottom: 0px !important;
@@ -85,6 +104,9 @@ h2, h3{
     padding-left: 0;
 }
 
+.vert-bottom {
+    vertical-align: bottom;
+}
 
 /*!
  * Start Bootstrap - Simple Sidebar (http://startbootstrap.com/)
