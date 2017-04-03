@@ -5,7 +5,7 @@
 
   <div class='row'>
     <div class='col-md-4'>
-      <%= image_tag 'team_logo.png' %>
+      <%= image_tag 'team_logo.png', width: "400px" %>
     </div>
     <div class='col-md-offset-5'>
       <div class='col top-margin'>
@@ -59,7 +59,7 @@
         <div class='col top-margin'>
           <div class='two ui buttons top-margin'>
             <%= link_to new_team_match_path(@team.id) do %>
-              <button class='ui button' style="background-color:#A71E39; color: #fff;">Invite Player</button>
+              <button class='ui button' style="background-color:#A71E39; color: #fff; margin-right: 10px;">Invite Player</button>
             <% end %>
             <%= link_to new_team_match_path(@team.id) do %>
               <button class='ui teal button'>Create a Match</button>
