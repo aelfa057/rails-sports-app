@@ -3,8 +3,8 @@ class MatchesController < ApplicationController
     #before_action :require_same_user, only: [:edit, :update, :destroy]
     before_action :require_user
     before_action :set_team
+    before_action :require_team_member, except: [:show]
 
-    
     def new
 
         @match = Match.new
@@ -69,6 +69,15 @@ class MatchesController < ApplicationController
       if current_user != @user
       #flash[:danger] = "You can only edit your own account"
       redirect_to user_path
+      end
+    end
+    
+    # This method queries the team_memberships table to validate the relationship between current user and team 
+    def require_team_member
+      @team = Team.find(params[:team_id])
+      if TeamMembership.where('team_id = ? AND user_id = ?', @team.id, current_user.id).blank?
+        flash[:danger] = "Oops! Only team members can do that! :("
+        redirect_to team_path(@team)
       end
     end
     
