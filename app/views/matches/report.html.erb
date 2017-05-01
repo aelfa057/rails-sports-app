@@ -1,0 +1,46 @@
+<div class="col-md-10 col-md-offset-1">
+
+<%= form_for @match, :url => edit_team_match_path(@team, @match) do |f| %>
+<div class="ui form">
+  
+  <div class="two fields">
+    <div class="field">
+      <label>Winner</label>
+      <%= f.collection_select(:winner_id, @match_teams, :id, :name, html: {id: "job"}) %>
+      <%= @match.home_team_id %>
+      <%= @match.away_team_id %>
+      
+    </div>
+    <div class="field">
+      <label>Loser</label>
+      <input placeholder="Loser" type="text">
+    </div>
+  </div>
+  
+  <div class="field">
+    <label>Gender</label>
+    <div class="ui selection dropdown">
+      <div class="default text">Select</div>
+      <i class="dropdown icon"></i>
+      <input type="hidden" name="gender">
+      <div class="menu">
+        <div class="item" data-value="male">Male</div>
+        <div class="item" data-value="female">Female</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="inline field">
+    <div class="ui checkbox">
+      <input type="checkbox" tabindex="0" class="hidden">
+      <label>I agree to the Terms and Conditions</label>
+    </div>
+  </div>
+  
+</div>
+  
+  <%= f.submit class: 'ui submit button' %>
+    
+  <5end></5end>
+<%end%>
+</div>

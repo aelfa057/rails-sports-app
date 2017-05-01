@@ -1,22 +1,22 @@
 <div class="col-md-4 col-md-offset-4 form-style-5 top-margin">
   
-  <%= form_for(@match, url: { action: 'create' },) do |f|   %>
+  <%= form_for(@match, url: { action: 'create' }) do |f|   %>
   
     <fieldset>
       <legend><span class="number">1</span> Create a Match </legend>
       <%= f.text_field :location, class: "form-control", placeholder: "Enter location", autofocus: true %>
-      <%= f.text_field :match_date, class: "form-control", placeholder: "Enter match date", autofocus: true %>
+      <%= f.date_field :match_date, class: "form-control", placeholder: "Enter match date", autofocus: true %>
       <%= f.text_field :match_time, class: "form-control", placeholder: "Enter match time", autofocus: true %>
       <%= f.label :home_team_id  %>
       <%= f.collection_select(:home_team_id, current_user.teams.all, :id, :name, html: {id: "job"} )  %>  
       <%= f.label :away_team_id  %>
-      <%= f.collection_select(:away_team_id, Team.all, :id, :name, html: {id: "job"}) %> 
+      <%= f.collection_select(:away_team_id, Team.where("id != ?", params[:team_id]), :id, :name, html: {id: "job"}) %> 
     </fieldset>
-    
-    <fieldset>
+  
+    <!--<fieldset>
       <legend><span class="number">2</span> Additional Info</legend>
       <textarea name="field3" placeholder="Enter Additional Match Information"></textarea>
-    </fieldset>
+    </fieldset>-->
     
     <%= f.submit %>
     

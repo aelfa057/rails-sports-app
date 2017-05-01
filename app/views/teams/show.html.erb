@@ -115,6 +115,13 @@
             <h4 align='center'><%= match.home_team.name %></h4>
             <p align='center'>Vs.</p>
             <h4 align='center'>Away Team Name</h4>
+            <h4 align='center'>
+              <%= link_to edit_team_match_report_path(@team, match.id, Report.find(match.id).id) do %>
+                <button class="mini ui button">
+                  Report Score
+                </button>
+              <%end%>
+            </h4>
         </div>
       </div>
    <% end %>

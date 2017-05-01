@@ -9,46 +9,7 @@
 <body>
 
 <%= render 'layouts/navbar' %>
-
-<div id="wrapper">
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper" style="margin-top: 0px">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-                        <% if logged_in? %>
-                            <%= current_user.username %>
-                        <% end %>
-                    </a>
-                </li>
-                <% if logged_in? %>
-                <li>
-                    <%= link_to 'Profile', user_path(current_user) %>
-                </li>
-                <li>
-                    <%= link_to 'Create Team', new_team_path %>
-                </li>
-                <% end %>
-                <li>
-                    <a href="#">Matches</a>
-                </li>
-                <li>
-                    <a href="#">Performance History</a>
-                </li>
-                <% if logged_in? %>
-                <li>
-                    <%= link_to 'My Teams', user_teams_path(current_user.teams) %>
-                </li>
-                <% end %>
-                <li>
-                    <a href="#">Find Match</a>
-                </li>
-                <li>
-                    <a>Create Match</a>
-                </li>
-            </ul>
-        </div>
+<%= render 'layouts/leftnav' %>
         <!-- /#sidebar-wrapper -->
         <!--
         <script>
@@ -58,7 +19,7 @@
             });
         </script>
         -->
-  
+  <%= render 'layouts/messages' %>
         
 <%= yield %>
 

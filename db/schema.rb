@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321232554) do
+ActiveRecord::Schema.define(version: 20170423005602) do
 
   create_table "matches", force: :cascade do |t|
     t.date    "match_date"
@@ -22,11 +22,25 @@ ActiveRecord::Schema.define(version: 20170321232554) do
     t.integer "away_team_id"
     t.integer "sport_id"
     t.boolean "completed"
+    t.integer "winner_id"
   end
 
   add_index "matches", ["away_team_id"], name: "index_matches_on_away_team_id"
   add_index "matches", ["home_team_id"], name: "index_matches_on_home_team_id"
   add_index "matches", ["sport_id"], name: "index_matches_on_sport_id"
+  add_index "matches", ["winner_id"], name: "index_matches_on_winner_id"
+
+  create_table "reports", force: :cascade do |t|
+    t.integer  "match_id"
+    t.integer  "winner_id_from_home"
+    t.integer  "winner_id_from_away"
+    t.boolean  "disputed"
+    t.integer  "winner_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "home_team_rating"
+    t.integer  "away_team_rating"
+  end
 
   create_table "sports", force: :cascade do |t|
     t.string   "name"

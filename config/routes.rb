@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   
   get 'matches', to: 'matches#index'
   resources :teams do 
-    resources :matches, except: :index
+    resources :matches, except: :index do
+      resources :report
+    end
   end
   
   

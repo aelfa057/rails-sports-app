@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  match_id: 
+  winner_id_from_home: 
+  winner_id_from_away: 
+  disputed: 
+  winner: MyString
+  integer: MyString
+
+two:
+  match_id: 
+  winner_id_from_home: 
+  winner_id_from_away: 
+  disputed: 
+  winner: MyString
+  integer: MyString

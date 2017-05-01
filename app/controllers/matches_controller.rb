@@ -1,8 +1,9 @@
 class MatchesController < ApplicationController
     
-    before_action :require_same_user, only: [:edit, :update, :destroy]
+    #before_action :require_same_user, only: [:edit, :update, :destroy]
     before_action :require_user
     before_action :set_team
+
     
     def new
 
@@ -13,7 +14,7 @@ class MatchesController < ApplicationController
     def create
         
         @match = Match.new(match_params)
-        @team = Team.find(@match.home_team_id)
+        @team = Team.find(params[:team_id])
         @sport = Sport.find(@team.sport_id)
         @match.sport = @sport
         
@@ -29,7 +30,13 @@ class MatchesController < ApplicationController
     end
     
     def update
-    
+      @match = Match.find(params[:match_id])
+      if @match.update(match_params)
+        flash[:success] = "Team was successfully updated" 
+        redirect_to team_path(@team)
+      else
+        render 'report'
+      end
     end
     
     def index
@@ -44,12 +51,19 @@ class MatchesController < ApplicationController
         
     end
     
+    def report
+       @match = Match.find(params[:match_id])
+       @match_teams = Team.find([@match.home_team_id, @match.away_team_id])
+    end
+    
     private
     
 
     def match_params
-       params.require(:match).permit(:match_date, :match_time, :location, :home_team_id, :away_team_id) 
+       params.require(:match).permit(:match_date, :match_time, :location, :home_team_id, :away_team_id, :winner_id) 
     end
+    
+    
     
     def require_same_user
       if current_user != @user
