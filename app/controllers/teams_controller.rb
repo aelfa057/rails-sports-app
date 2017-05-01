@@ -15,7 +15,7 @@ class TeamsController < ApplicationController
         # This sets the creater of the team -- a column in the teams table
         if @team.save
             flash[:success] = "Team was successfully created" 
-            redirect_to root_path
+            redirect_to user_path(current_user)
         else
             render 'new'
         end
