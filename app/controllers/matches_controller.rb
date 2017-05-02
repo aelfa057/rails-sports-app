@@ -6,13 +6,10 @@ class MatchesController < ApplicationController
     before_action :require_team_member, except: [:show]
 
     def new
-
         @match = Match.new
-        
     end
     
     def create
-        
         @match = Match.new(match_params)
         @team = Team.find(params[:team_id])
         @sport = Sport.find(@team.sport_id)
@@ -26,7 +23,6 @@ class MatchesController < ApplicationController
             flash[:danger] = "There was an issue creating the team, please try again."
             render 'new'
         end
-        
     end
     
     def update

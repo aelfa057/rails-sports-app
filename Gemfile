@@ -6,7 +6,7 @@ gem 'rails', '4.2.5'
 # Use sqlite3 as the database for Active Record
 gem 'bcrypt', '~> 3.1.7' 
 # Use SCSS for stylesheets
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass'
 gem 'sass-rails', '~> 5.0'
 gem 'twitter-bootstrap-rails'
 gem 'semantic-ui-sass', git: 'https://github.com/doabit/semantic-ui-sass.git'

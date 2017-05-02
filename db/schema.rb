@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170423005602) do
+ActiveRecord::Schema.define(version: 20170502150601) do
 
   create_table "matches", force: :cascade do |t|
     t.date    "match_date"
-    t.time    "match_time"
+    t.string  "match_time"
     t.string  "location"
     t.integer "user_id"
     t.integer "home_team_id"

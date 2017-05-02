@@ -5,7 +5,7 @@
 
   <div class='row'>
     <div class='col-md-4'>
-      <%= image_tag 'team_logo.png', width: "400px" %>
+      <%= image_tag 'team_logo.png', width: "300px" %>
     </div>
     <div class='col-md-offset-5'>
       <div class='col top-margin'>
@@ -102,28 +102,38 @@
 
 </div>
 
-
-
 <div class='row top-margin'>
-  <div class='col-md-offset-3'>
-    <% @matches.each do |match| %>
-      <div class='col-md-3'>
-        <div class='match-card'>
-          <p style="text-decoration: bold;"><%= match.match_date %></p>
-          <hr style="bottom-margin: 0 !important;">    
-          
-            <h4 align='center'><%= match.home_team.name %></h4>
-            <p align='center'>Vs.</p>
-            <h4 align='center'>Away Team Name</h4>
-            <h4 align='center'>
-              <%= link_to edit_team_match_report_path(@team, match.id, Report.find(match.id).id) do %>
-                <button class="mini ui button">
-                  Report Score
-                </button>
-              <%end%>
-            </h4>
-        </div>
-      </div>
-   <% end %>
+  <div class='col-md-10 col-md-offset-1'>
+    <table class="table">
+      <thead class="thead-inverse">
+        <tr>
+          <th>ID</th>
+          <th>Home Team</th>
+          <th>Away Team</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Location</th>
+          <th>Reported</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @matches.each do |match| %>
+          <tr>
+            <th scope="row"><%= match.id %></th>
+            <td><%= match.home_team.name %></td>
+            <td><%= match.away_team.name %></td>
+            <td><%= match.match_date %></td>
+            <td><%= match.match_time %></td>
+            <td><%= match.location %></td>       
+            <th><%= link_to edit_team_match_report_path(@team, match.id, Report.find(match.id).id) do %>
+                  <button class="mini ui button teal">
+                    Report Score
+                  </button>
+                <% end %>
+            </th>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
