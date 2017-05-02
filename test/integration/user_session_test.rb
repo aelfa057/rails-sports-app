@@ -30,24 +30,13 @@ class UserSessionTest < ActionDispatch::IntegrationTest
     get new_team_path
     post_via_redirect teams_path, team: {name: "test"}
     #get teams_path()
-    assert_template 'welcome/home'
+    assert_template 'users/show'
   end
   
   test "Automatic Login after signup" do
     get signup_path
     post_via_redirect users_path, user: {username: "testuser", email: "testuser@example.com", password: "password"}
     assert_template 'users/show'
-  end
-  
-  test "sign up, create team, and view list of teams" do
-    get signup_path
-    post_via_redirect users_path, user: {username: "testuser", email: "testuser@example.com", password: "password"}
-    assert_template 'users/show'
-    get new_team_path
-    post_via_redirect teams_path, team: {name: "test2"}
-    assert_template 'welcome/home'
-    get teams_path
-    assert_template 'teams/index'
   end
   
 end
