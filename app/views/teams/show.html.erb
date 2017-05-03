@@ -125,7 +125,7 @@
             <td><%= match.match_date %></td>
             <td><%= match.match_time %></td>
             <td><%= match.location %></td>       
-            <th><%= link_to edit_team_match_report_path(@team, match.id, Report.find(match.id).id) do %>
+            <th><%= link_to edit_team_match_report_path(@team, match.id, match.report.id) do %>
                   <button class="mini ui button teal">
                     Report Score
                   </button>

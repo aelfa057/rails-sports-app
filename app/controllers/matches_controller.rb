@@ -1,6 +1,6 @@
 class MatchesController < ApplicationController
     
-    #before_action :require_same_user, only: [:edit, :update, :destroy]
+    
     before_action :require_user
     before_action :set_team
     before_action :require_team_member, except: [:show]
@@ -15,6 +15,8 @@ class MatchesController < ApplicationController
         @sport = Sport.find(@team.sport_id)
         @match.sport = @sport
         
+        @report = Report.create
+        @match.report = @report
         if @match.save
             current_user.matches << @match
             flash[:success] = "You have successfully created a team! Invite some friends :)"
