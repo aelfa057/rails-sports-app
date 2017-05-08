@@ -2,8 +2,6 @@ class TeamsController < ApplicationController
     
     before_action :set_team, only: [:edit, :update, :show, :destroy]
     
-    
-    
     def new
         @team = Team.new
     end

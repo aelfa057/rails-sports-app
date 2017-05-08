@@ -8,6 +8,9 @@ class Team < ActiveRecord::Base
     has_one :captain_team_membership, -> { where captain: true}, class_name: 'TeamMembership'
     has_one :captain, through: :captain_team_membership, source: :user
     
+    has_many :tournament_teams
+    has_many :tournaments, through: :tournament_teams
+    
     belongs_to :sport
     
     #validates_associated :team_memberships

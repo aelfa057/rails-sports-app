@@ -1,0 +1,19 @@
+<div class='row'>
+    <div class='col-md-6 col-md-offset-3'>
+        <%= form_for(@tournament, url: {action: 'create'}) do |f| %>
+        
+            <div class='form-group'>
+                <%= f.text_field :location, class: "form-control", placeholder: "Enter location", autofocus: true %>
+                <%= f.collection_select(:sport_id, Sport.all, :id, :name, html: {id: "job"}) %>  
+                <%= f.text_field :date, class: "form-control", placeholder: "Enter date", autofocus: true %>
+                <%= f.text_field :start_time, class: "form-control", placeholder: "Enter start time", autofocus: true %>
+                <%= f.text_field :end_time, class: "form-control", placeholder: "Enter end time", autofocus: true %>
+            </div>
+            
+            <div class='form-group'>
+                <%= f.submit %>
+            </div>
+        
+        <% end %>
+    </div>
+</div>

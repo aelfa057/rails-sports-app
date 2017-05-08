@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tournament_id: 
+  round_number: 
+  teams_count: 1
+
+two:
+  tournament_id: 
+  round_number: 
+  teams_count: 1

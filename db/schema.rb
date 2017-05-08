@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170502150601) do
+ActiveRecord::Schema.define(version: 20170508141017) do
 
   create_table "matches", force: :cascade do |t|
     t.date    "match_date"
@@ -42,6 +42,19 @@ ActiveRecord::Schema.define(version: 20170502150601) do
     t.integer  "away_team_rating"
   end
 
+  create_table "round_teams", force: :cascade do |t|
+    t.integer "round_id"
+    t.integer "team_id"
+  end
+
+  create_table "rounds", force: :cascade do |t|
+    t.integer  "tournament_id"
+    t.integer  "round_number"
+    t.integer  "teams_count"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "sports", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -69,6 +82,20 @@ ActiveRecord::Schema.define(version: 20170502150601) do
 
   add_index "teams", ["sport_id"], name: "index_teams_on_sport_id"
   add_index "teams", ["user_id"], name: "index_teams_on_user_id"
+
+  create_table "tournament_teams", force: :cascade do |t|
+    t.integer "tournament_id"
+    t.integer "team_id"
+  end
+
+  create_table "tournaments", force: :cascade do |t|
+    t.string  "location"
+    t.integer "number_of_teams"
+    t.integer "sport_id"
+    t.date    "date"
+    t.string  "start_time"
+    t.string  "end_time"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
