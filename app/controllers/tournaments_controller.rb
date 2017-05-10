@@ -1,5 +1,6 @@
 class TournamentsController < ApplicationController
    
+   
    def index
       @tournaments = Tournament.all
    end
@@ -21,15 +22,20 @@ class TournamentsController < ApplicationController
    end
    
    def edit
-      @tournament = Tournament.find(params[:tournament_id])
+      @tournament = Tournament.find(params[:id])
    end
    
-   def update
-   
+   def show
+      @tournament = Tournament.find(params[:id])
    end
    
    def destroy
        
+   end
+   
+   def register
+      @tournament = Tournament.find(params[:id])
+      @team = Team.new
    end
    
    private
@@ -46,13 +52,19 @@ class TournamentsController < ApplicationController
          @round = Round.new(tournament_id: tournament.id, round_number: i + 1) # i is index-0 so we need to add 1
          if i == 1
            @round.teams_count = 8
+           @round.teams << tournament.teams
          elsif i == 2
            @round.teams_count = 0
            elsif i == 3
            @round.teams_count = 0
          end
+         #build_round_matchups(@round)
          @round.save
       end
+   end
+   
+   def build_round_matchups(round)
+      
    end
     
     

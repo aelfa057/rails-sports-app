@@ -36,5 +36,13 @@ class RoundsController < ApplicationController
    def set_tournament
       @tournament = Tournament.find(params[:tournament_id])
    end
+   
+   def set_round_matches
+       
+   end
+   
+   def current_round
+       
+   end
     
 end

@@ -5,6 +5,7 @@ class Round < ActiveRecord::Base
     has_many :round_teams
     has_many :teams, through: :round_teams
     
-    has_many :matches, through: :teams
+    has_many :round_matches
+    has_many :matches, through: :round_matches
     
 end

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   end
   
   resources :tournaments do
+    resources :tournament_teams
     resources :rounds, only: :index
   end
   

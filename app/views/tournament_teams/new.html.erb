@@ -1,0 +1,29 @@
+
+<%= @teams.each do |team| %>
+  <div class="col-md-4" style="margin-bottom: 5vh;">
+    <%#= link_to tournament_tournament_teams_path, {:action => :create, :tournament => @tournament.id, :team => team.id  }, :method => :post do %> 
+    
+    <%= button_to tournament_tournament_teams_path, {controller: "tournament_teams", action: "create" }, remote: true, :tournament_team => {:tournament_id => @tournament.id, :team_id => team.id} do %>
+    
+      
+      <div class="thumbnail">
+
+        <% if team.sport_id == 1 %>
+          <%= image_tag "basketball-court-big.png" %>
+        <% elsif team.sport_id == 2 %>
+          <%= image_tag "soccer-big.png" %>
+        <% else %>
+          <%= image_tag "hockey.png" %>
+        <% end %>
+        
+        <h2 align="center" class="team-name"><%= team.name %></h2>
+        <h3 align="center" class="team-record"><%= team.wins %>W - <%= team.losses %>L</h2>
+        
+      </div>
+    <% end %>    
+  </div>
+      
+  
+  
+  
+<% end %>

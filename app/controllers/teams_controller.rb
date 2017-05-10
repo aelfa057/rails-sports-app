@@ -11,7 +11,8 @@ class TeamsController < ApplicationController
         @team = Team.new(team_params)
         @team.captain = current_user
         # This sets the creater of the team -- a column in the teams table
-        if @team.save
+        
+        if @team.save && Tournament.exists?(params[:tournament_id])
             flash[:success] = "Team was successfully created" 
             redirect_to user_path(current_user)
         else
@@ -49,7 +50,7 @@ class TeamsController < ApplicationController
     
     # These are the fields we want to white-list with every call to update/create action
     def team_params
-         params.require(:team).permit(:name, :sport_id, user_ids: [])
+         params.require(:team).permit(:name, :sport_id, user_ids: [], tournament_ids: [])
     end
     
     def users_from_params

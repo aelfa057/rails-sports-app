@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170508141017) do
+ActiveRecord::Schema.define(version: 20170508193500) do
 
   create_table "matches", force: :cascade do |t|
     t.date    "match_date"
@@ -40,6 +40,12 @@ ActiveRecord::Schema.define(version: 20170508141017) do
     t.datetime "updated_at",          null: false
     t.integer  "home_team_rating"
     t.integer  "away_team_rating"
+  end
+
+  create_table "round_matches", force: :cascade do |t|
+    t.integer "round_id"
+    t.integer "match_id"
+    t.integer "winner_id"
   end
 
   create_table "round_teams", force: :cascade do |t|

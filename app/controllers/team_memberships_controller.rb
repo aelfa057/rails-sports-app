@@ -1,4 +1,3 @@
-# app/controllers/team_memberships_controller.rb
 class TeamMembershipsController < ApplicationController
     
       def index
